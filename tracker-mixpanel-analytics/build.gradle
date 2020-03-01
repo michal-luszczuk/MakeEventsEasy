@@ -1,0 +1,37 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    buildToolsVersion Config.buildTools
+    compileSdkVersion Config.compileSdk
+
+    defaultConfig {
+        minSdkVersion Config.minSdk
+        targetSdkVersion Config.targetSdk
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility Config.javaVersion
+        targetCompatibility Config.javaVersion
+    }
+}
+
+dependencies {
+    implementation Libs.kotlinStdLib
+    api project(path: ':core')
+    implementation Libs.mixpanelAnalytics
+
+    testImplementation Libs.junit
+    testImplementation Libs.mockk
+    testImplementation Libs.robolectric
+    testImplementation Libs.kluent
+    testImplementation Libs.kluentAndroid
+}

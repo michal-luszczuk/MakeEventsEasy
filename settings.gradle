@@ -1,0 +1,6 @@
+rootProject.name='MakeEventsEasy'
+include ':sample'
+include ':core'
+include ':tracker-firebase-analytics'
+include ':tracker-flurry-analytics'
+include ':tracker-mixpanel-analytics'
