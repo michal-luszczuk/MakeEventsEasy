@@ -27,7 +27,7 @@ android {
 dependencies {
     implementation Libs.kotlinStdLib
     api project(path: ':core')
-    implementation Libs.mixpanelAnalytics
+    api Libs.mixpanelAnalytics
 
     testImplementation Libs.junit
     testImplementation Libs.mockk

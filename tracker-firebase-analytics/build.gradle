@@ -27,7 +27,7 @@ android {
 dependencies {
     implementation Libs.kotlinStdLib
     api project(path: ':core')
-    implementation Libs.firebaseAnalytics
+    api Libs.firebaseAnalytics
 
     testImplementation Libs.junit
     testImplementation Libs.mockk

@@ -6,9 +6,9 @@ import com.mixpanel.android.mpmetrics.MixpanelAPI
 class MixpanelAnalyticsEventTracker constructor(
     private val mixpanelAnalytics: MixpanelAPI,
     private val parametersConverter: EventParametersToJsonObjectConverter
-) : EventTracker<FlurryEvent> {
+) : EventTracker<MixpanelEvent> {
 
-    override fun trackEvent(event: FlurryEvent) {
+    override fun trackEvent(event: MixpanelEvent) {
         mixpanelAnalytics.track(event.name, parametersConverter.convert(event.parameters))
     }
 }

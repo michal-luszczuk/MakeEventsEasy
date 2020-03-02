@@ -3,19 +3,15 @@ package com.luszczuk.makeeventseasy.flurry
 import com.luszczuk.makeeventseasy.base.EventParameter
 import com.luszczuk.makeeventseasy.firebase.EventParametersToJsonObjectConverter
 import com.luszczuk.makeeventseasy.firebase.MixpanelAnalyticsEventTracker
-import com.luszczuk.makeeventseasy.firebase.FlurryEvent
+import com.luszczuk.makeeventseasy.firebase.MixpanelEvent
 import com.mixpanel.android.mpmetrics.MixpanelAPI
 import io.mockk.*
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import org.json.JSONObject
-import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.Robolectric
-import org.robolectric.RobolectricTestRunner
 
 class MixpanelAnalyticsEventTrackerTest {
 
@@ -41,7 +37,7 @@ class MixpanelAnalyticsEventTrackerTest {
     fun `GIVEN specific event and converter returns parameters object WHEN trackEvent THEN mixpanel track  called with parameters`() {
         //given
         val exampleParameters = mockk<List<EventParameter<String, *>>>()
-        val event = mockk<FlurryEvent> {
+        val event = mockk<MixpanelEvent> {
             every { name } returns EXAMPLE_EVENT_NAME
             every { parameters } returns exampleParameters
         }

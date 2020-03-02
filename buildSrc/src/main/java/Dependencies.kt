@@ -19,6 +19,7 @@ object Versions {
     const val flurryAnalytics = "12.1.0"
     const val mixpanelAnalytics = "5.7.0"
     const val dokka = "0.10.1"
+    const val dagger = "2.26"
 }
 
 object Libs {
@@ -29,6 +30,10 @@ object Libs {
 
     const val kluent = "org.amshove.kluent:kluent:${Versions.kluent}"
     const val kluentAndroid = "org.amshove.kluent:kluent-android:${Versions.kluent}"
+
+    const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
+    const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+
 
     const val firebaseAnalytics = "com.google.firebase:firebase-analytics:${Versions.firebaseAnalytics}"
     const val flurryAnalytics = "com.flurry.android:analytics:${Versions.flurryAnalytics}"
