@@ -2,24 +2,24 @@ import org.gradle.api.JavaVersion
 
 object Config {
     const val minSdk = 19
-    const val compileSdk = 29
-    const val targetSdk = 29
+    const val compileSdk = 30
+    const val targetSdk = 30
     const val buildTools = "29.0.2"
     val javaVersion = JavaVersion.VERSION_1_8
 }
 
 
 object Versions {
-    const val junit = "4.13"
+    const val junit = "4.13.2"
     const val mockk = "1.9.3"
-    const val kotlinVersion = "1.3.61"
-    const val firebaseAnalytics = "17.2.2"
-    const val robolectric = "4.3.1"
-    const val kluent = "1.60"
-    const val flurryAnalytics = "12.1.0"
-    const val mixpanelAnalytics = "5.7.0"
+    const val kotlinVersion = "1.4.31"
+    const val firebaseAnalytics = "18.0.2"
+    const val robolectric = "4.5.1"
+    const val kluent = "1.65"
+    const val flurryAnalytics = "12.11.0"
+    const val mixpanelAnalytics = "5.8.6"
     const val dokka = "0.10.1"
-    const val dagger = "2.26"
+    const val dagger = "2.33"
 }
 
 object Libs {
