@@ -2,8 +2,8 @@ package com.luszczuk.makeeventseasy.sample.events
 
 import com.luszczuk.makeeventseasy.base.EventParameter
 import com.luszczuk.makeeventseasy.firebase.FirebaseEvent
-import com.luszczuk.makeeventseasy.firebase.FlurryEvent
-import com.luszczuk.makeeventseasy.firebase.MixpanelEvent
+import com.luszczuk.makeeventseasy.flurry.FlurryEvent
+import com.luszczuk.makeeventseasy.mixpanel.MixpanelEvent
 
 class SampleClickButtonEventWithDynamicParameters(
     buttonPressed: Boolean,

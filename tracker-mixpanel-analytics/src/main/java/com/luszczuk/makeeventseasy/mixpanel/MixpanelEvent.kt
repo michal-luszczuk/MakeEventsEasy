@@ -1,4 +1,4 @@
-package com.luszczuk.makeeventseasy.firebase
+package com.luszczuk.makeeventseasy.mixpanel
 
 import com.luszczuk.makeeventseasy.base.StandardEvent
 

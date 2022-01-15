@@ -1,7 +1,7 @@
 package com.luszczuk.makeeventseasy.flurry
 
 import com.luszczuk.makeeventseasy.base.EventParameter
-import com.luszczuk.makeeventseasy.firebase.EventParametersToJsonObjectConverter
+import com.luszczuk.makeeventseasy.mixpanel.EventParametersToJsonObjectConverter
 import org.amshove.kluent.`should be equal to`
 import org.junit.Before
 import org.junit.Test

@@ -1,25 +1,27 @@
+import com.vanniktech.maven.publish.MavenPublishPluginExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
+
 buildscript {
     repositories {
         google()
-        jcenter()
 
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.1.2")
+        classpath("com.android.tools.build:gradle:7.0.4")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}")
         classpath("org.jetbrains.dokka:dokka-gradle-plugin:${Versions.dokka}")
-        classpath("com.vanniktech:gradle-maven-publish-plugin:0.14.2")
+        classpath("com.vanniktech:gradle-maven-publish-plugin:0.18.0")
     }
 }
 
 plugins {
-    id("com.github.ben-manes.versions") version "0.38.0"
+    id("com.github.ben-manes.versions") version "0.41.0"
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
@@ -39,18 +41,26 @@ fun isNonStable(version: String): Boolean {
 
 
 subprojects {
+    apply(plugin = "kotlin-android")
+    val kotlin = project.extensions.getByName("kotlin") as KotlinAndroidProjectExtension
+    kotlin.sourceSets.all {
+        languageSettings {
+            languageVersion = "1.6"
+            progressiveMode = true
+        }
+    }
 
     pluginManager.withPlugin("com.android.library") {
         apply(plugin = "org.jetbrains.dokka")
 
         tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
-            outputFormat = "html"
-            outputDirectory = "$buildDir/javadoc"
+            outputDirectory.set(buildDir.resolve("javadoc"))
         }
-        val RELEASE_REPOSITORY_URL by extra("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-        val SNAPSHOT_REPOSITORY_URL by extra("https://s01.oss.sonatype.org/content/repositories/snapshots/")
 
         apply(plugin = "com.vanniktech.maven.publish")
+        (project.extensions.getByName("mavenPublish") as MavenPublishPluginExtension).apply {
+            sonatypeHost = com.vanniktech.maven.publish.SonatypeHost.S01
+        }
     }
 }
 

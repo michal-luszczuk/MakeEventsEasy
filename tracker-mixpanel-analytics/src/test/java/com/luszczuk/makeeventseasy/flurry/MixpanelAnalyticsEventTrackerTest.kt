@@ -1,9 +1,9 @@
 package com.luszczuk.makeeventseasy.flurry
 
 import com.luszczuk.makeeventseasy.base.EventParameter
-import com.luszczuk.makeeventseasy.firebase.EventParametersToJsonObjectConverter
-import com.luszczuk.makeeventseasy.firebase.MixpanelAnalyticsEventTracker
-import com.luszczuk.makeeventseasy.firebase.MixpanelEvent
+import com.luszczuk.makeeventseasy.mixpanel.EventParametersToJsonObjectConverter
+import com.luszczuk.makeeventseasy.mixpanel.MixpanelAnalyticsEventTracker
+import com.luszczuk.makeeventseasy.mixpanel.MixpanelEvent
 import com.mixpanel.android.mpmetrics.MixpanelAPI
 import io.mockk.*
 import io.mockk.every

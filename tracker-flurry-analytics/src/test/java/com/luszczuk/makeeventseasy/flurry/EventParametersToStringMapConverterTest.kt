@@ -1,7 +1,6 @@
 package com.luszczuk.makeeventseasy.flurry
 
 import com.luszczuk.makeeventseasy.base.EventParameter
-import com.luszczuk.makeeventseasy.firebase.EventParametersToStringMapConverter
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should be`
 import org.junit.Before

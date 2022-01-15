@@ -8,7 +8,7 @@ class EventParametersToBundleConverter {
     fun convert(parameters: List<EventParameter<String, *>>): Bundle {
         return Bundle().also { bundle ->
             parameters.forEach { parameter ->
-                Do exhaustive when (parameter) {
+                when (parameter) {
                     is EventParameter.StringEventParameter -> bundle.putString(
                         parameter.name,
                         parameter.value
