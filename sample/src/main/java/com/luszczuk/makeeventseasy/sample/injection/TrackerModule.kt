@@ -5,6 +5,10 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.luszczuk.makeeventseasy.base.tracker.StandardCompositeEventTracker
 import com.luszczuk.makeeventseasy.base.tracker.StandardCompositeEventTrackerBuilder
 import com.luszczuk.makeeventseasy.firebase.*
+import com.luszczuk.makeeventseasy.flurry.EventParametersToStringMapConverter
+import com.luszczuk.makeeventseasy.flurry.FlurryAnalyticsEventTracker
+import com.luszczuk.makeeventseasy.mixpanel.EventParametersToJsonObjectConverter
+import com.luszczuk.makeeventseasy.mixpanel.MixpanelAnalyticsEventTracker
 import com.mixpanel.android.mpmetrics.MixpanelAPI
 import dagger.Module
 import dagger.Provides
@@ -51,6 +55,6 @@ class TrackerModule {
 
     @Provides
     @Singleton
-    fun providesMixpanelApi(applicationContext: Application) =
+    fun providesMixpanelApi(applicationContext: Application): MixpanelAPI =
         MixpanelAPI.getInstance(applicationContext, "test")
 }

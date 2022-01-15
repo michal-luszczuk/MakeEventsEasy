@@ -1,4 +1,4 @@
-package com.luszczuk.makeeventseasy.firebase
+package com.luszczuk.makeeventseasy.flurry
 
 import com.luszczuk.makeeventseasy.base.EventParameter
 

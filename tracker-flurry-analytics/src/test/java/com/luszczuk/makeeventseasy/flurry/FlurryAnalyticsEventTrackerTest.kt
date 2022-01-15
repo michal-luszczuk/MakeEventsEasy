@@ -3,9 +3,6 @@ package com.luszczuk.makeeventseasy.flurry
 import com.flurry.android.FlurryAgent
 import com.flurry.android.FlurryEventRecordStatus
 import com.luszczuk.makeeventseasy.base.EventParameter
-import com.luszczuk.makeeventseasy.firebase.EventParametersToStringMapConverter
-import com.luszczuk.makeeventseasy.firebase.FlurryAnalyticsEventTracker
-import com.luszczuk.makeeventseasy.firebase.FlurryEvent
 import io.mockk.*
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs

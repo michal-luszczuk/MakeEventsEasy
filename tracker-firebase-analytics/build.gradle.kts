@@ -1,15 +1,14 @@
 plugins {
     id("com.android.library")
-    id("kotlin-android")
 }
 
 android {
-    buildToolsVersion(Config.buildTools)
-    compileSdkVersion(Config.compileSdk)
+    buildToolsVersion = Config.buildTools
+    compileSdk = Config.compileSdk
 
     defaultConfig {
-        minSdkVersion(Config.minSdk)
-        targetSdkVersion(Config.targetSdk)
+        minSdk = Config.minSdk
+        targetSdk = Config.targetSdk
     }
 
     buildTypes {

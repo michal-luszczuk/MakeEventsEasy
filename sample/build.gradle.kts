@@ -1,21 +1,20 @@
 plugins {
     id("com.android.application")
-    id("kotlin-android")
     id("kotlin-kapt")
 }
 
 android {
-    buildToolsVersion(Config.buildTools)
-    compileSdkVersion(Config.compileSdk)
+    buildToolsVersion = Config.buildTools
+    compileSdk = Config.compileSdk
 
     defaultConfig {
-        minSdkVersion(Config.minSdk)
-        targetSdkVersion(Config.targetSdk)
-        applicationId("com.luszczuk.makeeventseasy.sample")
-        versionCode(1)
-        versionName("1.0")
+        minSdk = Config.minSdk
+        targetSdk = Config.targetSdk
+        applicationId = "com.luszczuk.makeeventseasy.sample"
+        versionCode = 1
+        versionName = "1.0"
 
-        testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -41,16 +40,14 @@ dependencies {
 
     implementation(Libs.kotlinStdLib)
 
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.core:core-ktx:1.3.2")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation("androidx.appcompat:appcompat:1.4.1")
+    implementation("androidx.core:core-ktx:1.7.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
 
     implementation(Libs.dagger)
     kapt(Libs.daggerCompiler)
 
     testImplementation(Libs.junit)
-    androidTestImplementation("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
-
-
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 }
