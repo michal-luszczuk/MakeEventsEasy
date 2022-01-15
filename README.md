@@ -1,4 +1,4 @@
-## Motivation
+## 💪 Motivation
 To make a great app and provide value to the users you need to understand them. Analytical data helps us to achieve that.
 There are many solutions/systems to track user behavior, i.e. [Firebase Analytics](https://firebase.google.com/docs/analytics), [Flurry SDK for Android](https://developer.yahoo.com/flurry/docs/integrateflurry/android/), [MixPanel SDK](https://developer.mixpanel.com/docs/android) and more...
 
@@ -8,10 +8,10 @@ What prevents us from integrating several solutions at once?
 - Integrating one analytical system could be a mess, so... integrating few will cause a bigger mess?
 - Is it the fear of the clutter in the code after doing so?
 
-## Goal
+## 🎯 Goal
 Events tracking must be fun, easy and clean! No mater if we want to use one, two, or multiple analytical solutions at once!
 
-## Solution - MakeEventsEasy library!
+## 💡 Solution - MakeEventsEasy library!
 ### Benefits
 - **Easy to use**: You can easily build your main tracker by composing multiple specific trackers. 
 - **Customizable**: Conveniently implement your own specific tracker, handle any tracking library and plug it to the solution. Everyting is based on composite pattern.
@@ -19,7 +19,7 @@ Events tracking must be fun, easy and clean! No mater if we want to use one, two
 - **Lightweight**: The core module and the whole concept is super small so size of your app will not increase.
 - **Testable**: This library makes event testing easier so you never miss or lose any data
 
-## Download
+## 🚚 Download
 MakeEventsEasy is available on `mavenCentral()`.
 
 ```kotlin
@@ -37,7 +37,7 @@ implementation("com.luszczuk.makeeventseasy:tracker-flurry-analytics:0.4.0")
 implementation("com.luszczuk.makeeventseasy:tracker-mixpanel-analytics:0.4.0")
 ```
 
-## Quick Start
+## 🌟 Quick Start
 
 ### 1. Build your tracker
 Example, shows how to compose and build our main app tracker using Firebase, Flurry and MixPanel trackers 
@@ -88,7 +88,7 @@ appTracker.trackEvent(
 
 
 
-## Concept & Design
+## 🧠 Concept & Design
 <details>
 <summary>Open to understand more the concept behind this library</summary>
 <br>
