@@ -85,3 +85,108 @@ appTracker.trackEvent(
     SampleClickButtonEventWithDynamicParameters(buttonPressed = true, price = 350.0)
 )
 ```
+
+
+
+## Concept & Design
+<details>
+<summary>Open to understand more the concept behind this library</summary>
+<br>
+            
+### Getting out of the bad
+Most of the time when we implement event tracking, i.e. we want to log a button click event in the ViewModel, we just take a specific tracker object and call it, i.e. for Firebase it would be:
+```kotlin
+class ExampleViewModel @Inject constructor(
+   firebaseAnalytics: FirebaseAnalytics,
+   ...
+) : ViewModel() {
+
+   fun onButtonClick() {
+       firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM) {
+          param(FirebaseAnalytics.Param.ITEM_ID, id)
+          param(FirebaseAnalytics.Param.ITEM_NAME, name)
+          param(FirebaseAnalytics.Param.CONTENT_TYPE, "image")
+      }
+      
+      // rest of the implementation after this action
+   }
+   ...
+}
+```
+Cons of this solution?
+- tracking code takes a lot of place (we need few lines to just send an event)
+- even if we extract this part of code different trackers have different event parameters representation -  types like Bundle, Map<String, Any>, Map<String, String>, etc.
+- makes view model harder to test, i.e. Firebase event tracking takes Bundle class as a parameter store
+- the bigger the nuber of trackers the more place it will take 
+
+### Good
+#### Event
+We can think about an Event (no mater which tracking solution we are using) as an enity with the **name** and **parameters list**. Implementation
+So we can make an abstraction that Event is a class with name field and parameters list field.
+```kotlin
+// part of the library code:
+interface Event<K, P> {
+    val name: K
+    val parameters: List<P>
+        get() = emptyList()
+}
+```
+
+#### Tracker
+We can think about tracker as an enity which can handle events of the specific type and send them to the analytical servers
+```kotlin
+// part of the library code:
+interface EventTracker<in T : Event<*, *>> {
+    fun trackEvent(event: T)
+}
+```
+
+To define the specific event details (name and parameters) we define specific class which internally holds all the details about the name and the parameters.
+```kotlin
+class SelectItem(id: String, name: String, type: String): FirebaseEvent {
+
+    override val name: String = FirebaseAnalytics.Event.SELECT_ITEM
+
+    override val parameters: List<EventParameter<String, *>> = listOf(
+        EventParameter.StringEventParameter(name = FirebaseAnalytics.Param.ITEM_ID, value = id),
+        EventParameter.StringEventParameter(name = FirebaseAnalytics.Param.ITEM_NAME, value = name),
+        EventParameter.StringEventParameter(name = FirebaseAnalytics.Param.CONTENT_TYPE, value = type)
+    )
+}         
+```
+           
+To define the specific tracker we implement the interface and handle the event by converting parameters from base parameters to parameters required by the specific tracker
+```kotlin
+// part of library code:
+class FirebaseAnalyticsEventTracker constructor(
+    private val firebaseAnalytics: FirebaseAnalytics,
+    private val parametersConverter: EventParametersToBundleConverter
+) : EventTracker<FirebaseEvent> {
+
+    override fun trackEvent(event: FirebaseEvent) {
+        firebaseAnalytics.logEvent(event.name, parametersConverter.convert(event.parameters))
+    }
+}
+```
+              
+After that, when we create our composite tracker, we just have to pass our specific event to it         
+```kotlin
+class ExampleViewModel @Inject constructor(
+   appTracker: StandardCompositeEventTracker,
+   ...
+) : ViewModel() {
+
+   fun onButtonClick() {
+       appTracker.trackEvent(SelectItem(id = id, name = name, type = "image"))
+      // rest of the implementation after this action
+   }
+   ...
+}
+```
+
+Pros of this solution?
+- tracking code is a one liner
+- we can build our app tracker composing multiple trackers but the tracking part in the ViewModel will not change
+- its easy to add unit test here, just mock event tracker and check if `trackEvent` method is called with proper event instance
+- composition and tracker preparation is out of our sight, here we only have to create an event and pass it to app tracker 
+</details>
